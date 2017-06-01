@@ -3,7 +3,7 @@
 <start T2>
 <Commit T1>
 <T2,B,9,10>
-<Start CKPT(T2,T1)>
+<Start CKPT(T2)>
 <T2,C,14,15>
 <start T3>
 <T3,D,19,20>
@@ -11,4 +11,4 @@
 <END CKPT>
 <start T4>
 <T4,casa,33,88>
-
+<Commit T4>
