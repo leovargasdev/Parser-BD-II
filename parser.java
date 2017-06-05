@@ -1,7 +1,20 @@
 import java.util.*;
 import java.io.*;
 class parser{
+    public static Map lendoEntrada() throws IOException{
+        Map<String,Integer> valores = new HashMap<String,Integer>();
+        BufferedReader entrada = new BufferedReader(new FileReader(new File("entrada.txt")));//carrega o arquivo
+        String linha = entrada.readLine();
+        while(linha != null){
+            String[] info  = linha.replaceAll(" ", "").split("=");
+            valores.put( info[0], Integer.parseInt(info[1]));
+            linha = entrada.readLine();
+        }
+        entrada.close();
+        return valores;
+    }
     public static void main(String [] args) throws IOException{
+        Map<String,Integer> arquivoEntrada = lendoEntrada();
         BufferedReader ler = new BufferedReader(new FileReader(new File("log.txt")));//carrega o arquivo
         ArrayList<transacoes> transacoes = new ArrayList(), redo = new ArrayList(), undo = new ArrayList(); // ArrayList com os objetos da classe transacoes.java
         ArrayList<String> linhas = new ArrayList(), listaCheckPoint = new ArrayList(); // ArrayList com os objetos da classe transacoes.java
@@ -33,9 +46,12 @@ class parser{
                             transacoes.remove(w);// remove a transacoes pois ela esta garantida em disco
                         }
             } else {
-                for(int w = 0; w < transacoes.size(); w++ )// percorre todas as transacoes já iniciada
+                for(int w = 0; w < transacoes.size(); w++)// percorre todas as transacoes já iniciada
                     if(l.startsWith(transacoes.get(w).transacao))// verifica qual transacao pertence essa operação
                         transacoes.get(w).insertT(l);
+                String[] vl = l.split(",");
+                if(arquivoEntrada.containsKey(vl[1]))
+                    arquivoEntrada.remove(vl[1]);
             }
             l = ler.readLine();
         }
@@ -54,5 +70,10 @@ class parser{
         for(int i = 0; i < undo.size(); i++)
             System.out.print(undo.get(i).transacao + " ");
         System.out.println();
+        System.out.println("Variaveis não usadas:");
+        for (String key : arquivoEntrada.keySet()) {
+            Integer value = arquivoEntrada.get(key);
+            System.out.println(key + " = " + value);
+        }
     }
 }
