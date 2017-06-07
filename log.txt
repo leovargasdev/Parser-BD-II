@@ -1,14 +1,14 @@
 <start T1>
-<T1,A,4,5>
+
 <start T2>
 <Commit T1>
-<T2,B,9,10>
-<Start CKPT(T2)>
-<T2,C,14,15>
 <start T3>
-<T3,D,19,20>
-<T2,eu,9,8>
-<END CKPT>
 <start T4>
-<T4,casa,33,88>
+<start T5>
+<Commit T3>
+<Commit T2>
+<Start CKPT(T5)>
+
+<END CKPT>
 <Commit T4>
+
