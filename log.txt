@@ -1,14 +1,26 @@
 <start T1>
+<T1, a, 10, 3>
+<commit T1>
 
-<start T2>
-<Commit T1>
-<start T3>
-<start T4>
-<start T5>
-<Commit T3>
-<Commit T2>
-<Start CKPT(T5)>
+<start semconit>
 
-<END CKPT>
-<Commit T4>
+<start primeiroConit>
+
+<start CKPT(primeiroConit)>
+
+<commit primeiroConit>
+
+<start comecouNoCt>
+
+<end CKPT>
+
+<comecouNoCt, a, 10, 10>
+
+<comecouNoCt, ASDASDAD, 101, 101>
+
+<start CKPT(comecouNoCt)>
+
+<commit comecouNoCt>
+
+<end CKPT>
 
