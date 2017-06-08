@@ -9,7 +9,7 @@ import java.io.*;
 class parser{
     public static Map lendoEntrada() throws IOException{
         Map<String,Integer> valores = new HashMap<String,Integer>();
-        BufferedReader entrada = new BufferedReader(new FileReader(new File("entrada.txt")));
+        BufferedReader entrada = new BufferedReader(new FileReader(new File("txt/entrada.txt")));
         String linha = entrada.readLine();
         while(linha != null){
             String[] info  = linha.replaceAll(" ", "").toUpperCase().split("=");
@@ -21,8 +21,8 @@ class parser{
     }
     public static void main(String [] args) throws IOException{
         Map<String,Integer> valoresEntrada = lendoEntrada();                            //Valores do arquivo entrada.txt
-        FileWriter arqSaida =new FileWriter("saida.txt", false);                        //Limpa o arquivo de saida.txt
-        BufferedReader ler = new BufferedReader(new FileReader(new File("log.txt")));
+        FileWriter arqSaida =new FileWriter("txt/saida.txt", false);                        //Limpa o arquivo de saida.txt
+        BufferedReader ler = new BufferedReader(new FileReader(new File("txt/log.txt")));
         ArrayList<transacoes>   transacoes = new ArrayList();
         String  start = "START",
                 commit = "COMMIT",
@@ -64,7 +64,7 @@ class parser{
         }
         ler.close();
         arqSaida.close();
-        BufferedWriter escrever = new BufferedWriter(new FileWriter("saida.txt", true));
+        BufferedWriter escrever = new BufferedWriter(new FileWriter("txt/saida.txt", true));
         for(int i = 0; i < transacoes.size(); i++){
             if(transacoes.get(i).getEmDisco()){
                 System.out.println("Em Disco:   " + transacoes.get(i).getNome());
