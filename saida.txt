@@ -1,5 +1,6 @@
-A = 10
-ASDASDAD = 101
+EU = 3
+MARTELO = 5
+C = 12
+A = 5
 B = 9
-C = 14
 D = 19

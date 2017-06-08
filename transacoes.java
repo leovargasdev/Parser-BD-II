@@ -1,24 +1,19 @@
 import java.util.*;
 import java.io.*;
 class transacoes{
-    public ArrayList<variavel> op = new ArrayList();// variavel das operações referente a transação
-    public String transacao;
-    public Boolean commit; // flag para saber se foi dado um commit
-    public Boolean ckpt; // flag para saber se uma transação esta no parametro do checkPoint ou iniciou dps do "start CKPT"
-    public Boolean emDisco; // flag para saber se uma transação esta no parametro do checkPoint ou iniciou dps do "start CKPT"
+    public ArrayList<variavel> vars = new ArrayList();//Variaveis referente a transação
+    private String nome;                            //Nome da transação
+    private Boolean commit;
+    private Boolean ckpt;                           //ckpt = true, quando uma transação esta no parametro do checkPoint ou iniciou dps do "start CKPT"
+    private Boolean emDisco;                        //emDisco = true, quando uma transação finalizou antes do CKPT, e o CKPT finalizou com sucesso
     public transacoes(String t, Boolean checkPoint){
-        this.transacao = t;
+        this.nome = t;
         this.commit = false;
         this.ckpt =  checkPoint;
         this.emDisco =  false;
     }
-    public void insertT(String l){
-        variavel v = new variavel(l.split(","));
-        this.op.add(v);
-    }
-    public void getTransacoes(){
-        for(int g = 0; g < this.op.size(); g++)
-            this.op.get(g).getVariavel();
+    public void insertVar(String l){
+        this.vars.add(new variavel(l.split(",")));
     }
     public void setCommit(){
         this.commit = true;
@@ -28,5 +23,21 @@ class transacoes{
     }
     public void setCkpt(Boolean checkPoint){
         this.ckpt = checkPoint;
+    }
+    public void getTransacoes(){
+        for(int g = 0; g < this.vars.size(); g++)
+            this.vars.get(g).getVariavel();
+    }
+    public String getNome(){
+        return this.nome;
+    }
+    public Boolean getCommit(){
+        return this.commit;
+    }
+    public Boolean getCkpt(){
+        return this.ckpt;
+    }                            //ckpt = true, quando uma transação esta no parametro do checkPoint ou iniciou dps do "start CKPT"
+    public Boolean getEmDisco(){
+        return this.emDisco;
     }
 }
